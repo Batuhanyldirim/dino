@@ -126,6 +126,7 @@ def get_args_parser():
     parser.add_argument("--dist_url", default="env://", type=str, help="""url used to set up
         distributed training; see https://pytorch.org/docs/stable/distributed.html""")
     parser.add_argument("--local_rank", default=0, type=int, help="Please ignore and do not set this argument.")
+    parser.add_argument("--world_size", default=1, type=int, help="Please ignore and do not set this argument.")
     return parser
 
 
@@ -467,5 +468,6 @@ class DataAugmentationDINO(object):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('DINO', parents=[get_args_parser()])
     args = parser.parse_args()
+    print("args", args.arch)
     Path(args.output_dir).mkdir(parents=True, exist_ok=True)
     train_dino(args)
