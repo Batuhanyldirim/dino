@@ -1,3 +1,5 @@
+import argparse
+
 classes =[
 "aeroplane_trainval.txt",
 "bicycle_trainval.txt",
@@ -20,12 +22,19 @@ classes =[
 "train_trainval.txt",
 "tvmonitor_trainval.txt",
 ]
+
+
 import shutil
 import os
-path = "/home/batuhan/Desktop/datasets/VOCtrainval_11-May-2012/VOCdevkit/VOC2012/ImageSets/Main/"
-target = "/home/batuhan/Desktop/datasets/Changed"
-images = "/home/batuhan/Desktop/datasets/VOCtrainval_11-May-2012/VOCdevkit/VOC2012/JPEGImages"
-if __name__ == '__main__':
+
+
+
+
+def main(args: argparse.Namespace):
+    path = args.txt_path  # "/home/batuhan/Desktop/datasets/VOCtrainval_11-May-2012/VOCdevkit/VOC2012/ImageSets/Main/"
+    target = args.target_path #"/home/batuhan/Desktop/datasets/Changed"
+    images = args.image_path #"/home/batuhan/Desktop/datasets/VOCtrainval_11-May-2012/VOCdevkit/VOC2012/JPEGImages"
+
     for i in classes:
         thisf = os.path.join(path,i)
         f = open(thisf,"r")
@@ -40,6 +49,25 @@ if __name__ == '__main__':
 
                 shutil.copy(fr, tar)
                 print("image:",splited,"has copied")
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser("Visualize attention rollout from DINO")
+    parser.add_argument(
+        "-i", "--txt-path", dest="txt_path", type=str, help="Path to the txt file that contains image info"
+    )
+    parser.add_argument(
+        "-l", "--image-path", dest="image_path", type=str, help="Path to the images in original location"
+    )
+    parser.add_argument(
+        "-b", "--target-path", dest="target_path", type=str, help="Path to the target directory"
+    )
+    args = parser.parse_args()
+    main(args)
+
+
+
+
 
 
 
