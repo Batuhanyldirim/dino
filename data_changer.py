@@ -33,9 +33,9 @@ import os
 #args.target_path
 #args.image_path #
 def main(args: argparse.Namespace):
-    path = "/home/batuhan/Desktop/datasets/VOCtrainval_11-May-2012/VOCdevkit/VOC2012/ImageSets/Main/"
-    target = "/home/batuhan/Desktop/datasets/Changed"
-    images = "/home/batuhan/Desktop/datasets/VOCtrainval_11-May-2012/VOCdevkit/VOC2012/JPEGImages"
+    path = args.txt_path  #"/home/batuhan/Desktop/datasets/VOCtrainval_11-May-2012/VOCdevkit/VOC2012/ImageSets/Main/"
+    target = args.target_path #"/home/batuhan/Desktop/datasets/Changed"
+    images = args.image_path #"/home/batuhan/Desktop/datasets/VOCtrainval_11-May-2012/VOCdevkit/VOC2012/JPEGImages"
 
     for i in classes:
         thisf = os.path.join(path,i)
