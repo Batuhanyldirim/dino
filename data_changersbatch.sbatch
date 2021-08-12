@@ -42,14 +42,12 @@ def main(args: argparse.Namespace):
             splited = k.split(" ")
             if splited[-1][0] == "1":
                 tar = os.path.join(target, i[:-13])
-                os.makedirs(tar)
                 tar = os.path.join(tar, splited[0])
                 tar += ".jpg"
                 fr = os.path.join(images,splited[0])
                 fr += ".jpg"
 
                 shutil.copy(fr, tar)
-
                 print("image:",splited,"has copied")
 
 
@@ -66,11 +64,4 @@ if __name__ == '__main__':
     )
     args = parser.parse_args()
     main(args)
-
-
-
-
-
-
-
 
