@@ -28,12 +28,14 @@ import shutil
 import os
 
 
-
-
+#args.txt_path  #
+##
+#args.target_path
+#args.image_path #
 def main(args: argparse.Namespace):
-    path = args.txt_path  # "/home/batuhan/Desktop/datasets/VOCtrainval_11-May-2012/VOCdevkit/VOC2012/ImageSets/Main/"
-    target = args.target_path #"/home/batuhan/Desktop/datasets/Changed"
-    images = args.image_path #"/home/batuhan/Desktop/datasets/VOCtrainval_11-May-2012/VOCdevkit/VOC2012/JPEGImages"
+    path = "/home/batuhan/Desktop/datasets/VOCtrainval_11-May-2012/VOCdevkit/VOC2012/ImageSets/Main/"
+    target = "/home/batuhan/Desktop/datasets/Changed"
+    images = "/home/batuhan/Desktop/datasets/VOCtrainval_11-May-2012/VOCdevkit/VOC2012/JPEGImages"
 
     for i in classes:
         thisf = os.path.join(path,i)
@@ -41,7 +43,8 @@ def main(args: argparse.Namespace):
         for k in f.readlines():
             splited = k.split(" ")
             if splited[-1][0] == "1":
-                tar = os.path.join(target, i[:-13])
+                tar = os.path.join(target, i[:-10])
+
                 os.makedirs(tar)
                 tar = os.path.join(tar, splited[0])
                 tar += ".jpg"
