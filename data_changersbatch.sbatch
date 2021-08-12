@@ -1,67 +1,20 @@
-import argparse
+#!/usr/bin/env bash
+#SBATCH --mem 10GB
+#SBATCH --gres gpu:3
+#SBATCH --cpus-per-task 8
+#SBATCH --constraint rivendell
+#SBATCH --time 48:00:00
+#SBATCH --mail-type FAIL
+#SBATCH --mail-user batuhany@kth.se
+#SBATCH --error /Midgard/home/%u/dino/logs/%J_slurm.err
+#SBATCH --output /Midgard/home/%u/dino/logs/%J_slurm.out
 
-classes =[
-"aeroplane_train.txt",
-"bicycle_train.txt",
-"bird_train.txt",
-"boat_trainl.txt",
-"bottle_train.txt",
-"bus_train.txt",
-"car_train.txt",
-"cat_train.txt",
-"chair_train.txt",
-"cow_train.txt",
-"diningtable_train.txt",
-"dog_train.txt",
-"horse_train.txt",
-"motorbike_trainl.txt",
-"person_train.txt",
-"pottedplant_train.txt",
-"sheep_train.txt",
-"sofa_train.txt",
-"train_train.txt",
-"tvmonitor_train.txt",
-]
+echo "Starting job ${SLURM_JOB_ID} on ${SLURMD_NODENAME}"
+nvidia-smi
+. ~/miniconda3/etc/profile.d/conda.sh
+pushd ~/dino
+conda activate dino
 
-
-import shutil
-import os
-
-
-
-
-def main(args: argparse.Namespace):
-    path = args.txt_path  # "/home/batuhan/Desktop/datasets/VOCtrainval_11-May-2012/VOCdevkit/VOC2012/ImageSets/Main/"
-    target = args.target_path #"/home/batuhan/Desktop/datasets/Changed"
-    images = args.image_path #"/home/batuhan/Desktop/datasets/VOCtrainval_11-May-2012/VOCdevkit/VOC2012/JPEGImages"
-
-    for i in classes:
-        thisf = os.path.join(path,i)
-        f = open(thisf,"r")
-        for k in f.readlines():
-            splited = k.split(" ")
-            if splited[-1][0] == "1":
-                tar = os.path.join(target, i[:-13])
-                tar = os.path.join(tar, splited[0])
-                tar += ".jpg"
-                fr = os.path.join(images,splited[0])
-                fr += ".jpg"
-
-                shutil.copy(fr, tar)
-                print("image:",splited,"has copied")
-
-
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser("Visualize attention rollout from DINO")
-    parser.add_argument(
-        "-i", "--txt-path", dest="txt_path", type=str, help="Path to the txt file that contains image info"
-    )
-    parser.add_argument(
-        "-l", "--image-path", dest="image_path", type=str, help="Path to the images in original location"
-    )
-    parser.add_argument(
-        "-b", "--target-path", dest="target_path", type=str, help="Path to the target directory"
-    )
-    args = parser.parse_args()
-    main(args)
-
+python main_dino.py --data_path /local_storage/datasets/voc2012/changed_data \
+    --output_dir /local_storage/users/batuhany/dino/checkpoints \
+    --num_workers 4
