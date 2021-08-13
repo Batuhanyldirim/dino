@@ -26,7 +26,7 @@ classes =[
 
 import shutil
 import os
-from os import path
+
 
 
 #args.txt_path  #
@@ -46,7 +46,7 @@ def main(args: argparse.Namespace):
             if splited[-1][0] == "1":
                 tar = os.path.join(target, i[:-10])
 
-                if not path.exists(tar):
+                if not os.path.isdir(tar):
                     os.makedirs(tar)
                 tar = os.path.join(tar, splited[0])
                 tar += ".jpg"
