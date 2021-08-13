@@ -13,8 +13,8 @@ echo "Starting job ${SLURM_JOB_ID} on ${SLURMD_NODENAME}"
 nvidia-smi
 . ~/miniconda3/etc/profile.d/conda.sh
 pushd ~/dino
-conda activate dino
+conda activate dinoss
 
-python main_dino.py --data_path /local_storage/datasets/voc2012/changed_data \
+python -m torch.distributed.launch main_dino.py --data_path /local_storage/datasets/voc2012_for_dino \
     --output_dir /local_storage/users/batuhany/dino/checkpoints \
     --num_workers 4
