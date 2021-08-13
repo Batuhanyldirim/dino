@@ -4,7 +4,7 @@ classes =[
 "aeroplane_train.txt",
 "bicycle_train.txt",
 "bird_train.txt",
-"boat_trainl.txt",
+"boat_train.txt",
 "bottle_train.txt",
 "bus_train.txt",
 "car_train.txt",
@@ -14,7 +14,7 @@ classes =[
 "diningtable_train.txt",
 "dog_train.txt",
 "horse_train.txt",
-"motorbike_trainl.txt",
+"motorbike_train.txt",
 "person_train.txt",
 "pottedplant_train.txt",
 "sheep_train.txt",
@@ -26,6 +26,7 @@ classes =[
 
 import shutil
 import os
+from os import path
 
 
 #args.txt_path  #
@@ -45,7 +46,8 @@ def main(args: argparse.Namespace):
             if splited[-1][0] == "1":
                 tar = os.path.join(target, i[:-10])
 
-                os.makedirs(tar)
+                if not path.exists(tar):
+                    os.makedirs(tar)
                 tar = os.path.join(tar, splited[0])
                 tar += ".jpg"
                 fr = os.path.join(images,splited[0])
