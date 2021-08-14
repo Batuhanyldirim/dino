@@ -29,6 +29,7 @@ import torch.backends.cudnn as cudnn
 import torch.nn.functional as F
 from torchvision import datasets, transforms
 from torchvision import models as torchvision_models
+import wandb
 
 import utils
 import vision_transformer as vits
@@ -131,6 +132,11 @@ def get_args_parser():
 
 
 def train_dino(args):
+    wandb.init(project="dinoss_try", entity="dino-wsss-kth")
+    config = wandb.config
+
+    config.learning_rate = args.lr
+
     utils.init_distributed_mode(args)
     utils.fix_random_seeds(args.seed)
     print("git:\n  {}\n".format(utils.get_sha()))
@@ -284,6 +290,9 @@ def train_dino(args):
             'args': args,
             'dino_loss': dino_loss.state_dict(),
         }
+        wandb.log({"loss": dino_loss.state_dict()})
+
+
         if fp16_scaler is not None:
             save_dict['fp16_scaler'] = fp16_scaler.state_dict()
         utils.save_on_master(save_dict, os.path.join(args.output_dir, 'checkpoint.pth'))
