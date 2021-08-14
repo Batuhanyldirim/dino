@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #SBATCH --mem 10GB
-#SBATCH --gres gpu:3
+#SBATCH --gres gpu:1
 #SBATCH --cpus-per-task 8
 #SBATCH --constraint belegost
 #SBATCH --time 48:00:00
