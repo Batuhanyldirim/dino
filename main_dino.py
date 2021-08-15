@@ -132,7 +132,7 @@ def get_args_parser():
 
 
 def train_dino(args):
-    wandb.init(project="dinoss_try_2", entity="dino-wsss-kth")
+    wandb.init(project="dinoss_try_3", entity="dino-wsss-kth")
     config = wandb.config
 
     config.learning_rate = args.lr
