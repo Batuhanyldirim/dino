@@ -132,7 +132,7 @@ def get_args_parser():
 
 
 def train_dino(args):
-    wandb.init(project="dinoss_try", entity="dino-wsss-kth")
+    wandb.init(project="dinoss_try_2", entity="dino-wsss-kth")
     config = wandb.config
 
     config.learning_rate = args.lr
@@ -291,6 +291,7 @@ def train_dino(args):
             'dino_loss': dino_loss.state_dict(),
         }
         wandb.log({"loss": dino_loss.state_dict()})
+        print("Should have wrote loss")
 
 
         if fp16_scaler is not None:
