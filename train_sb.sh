@@ -17,4 +17,5 @@ conda activate dinoss
 
 python -m torch.distributed.launch main_dino.py --data_path /local_storage/datasets/voc2012_for_dino \
     --output_dir /local_storage/users/batuhany/dino/checkpoints \
-    --num_workers 4
+    --num_workers 4 \
+    --batch_size_per_gpu 16

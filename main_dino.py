@@ -132,7 +132,7 @@ def get_args_parser():
 
 
 def train_dino(args):
-    wandb.init(project="dinoss_try_3", entity="dino-wsss-kth")
+    wandb.init(project="dinoss_try_4", entity="dino-wsss-kth")
     config = wandb.config
 
     config.learning_rate = args.lr
@@ -293,8 +293,9 @@ def train_dino(args):
 
         print("Loss:", dino_loss.state_dict())
 
-        """print("Should have wrote loss")
-        wandb.log({"loss": dino_loss.state_dict()})"""
+        print("Should have wrote loss_1")
+        wandb.log({"loss": dino_loss.state_dict()})
+        print("Should have wrote loss_2")
 
 
 
