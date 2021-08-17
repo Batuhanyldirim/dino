@@ -290,8 +290,12 @@ def train_dino(args):
             'args': args,
             'dino_loss': dino_loss.state_dict(),
         }
-        wandb.log({"loss": dino_loss.state_dict()})
-        print("Should have wrote loss")
+
+        print("Loss:", dino_loss.state_dict())
+
+        """print("Should have wrote loss")
+        wandb.log({"loss": dino_loss.state_dict()})"""
+
 
 
         if fp16_scaler is not None:
