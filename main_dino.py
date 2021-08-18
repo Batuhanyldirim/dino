@@ -306,9 +306,9 @@ def train_dino(args):
 
         print("Loss:", dino_loss.state_dict())
 
-        print("Should have wrote loss_1")
-        wandb.log({"loss": dino_loss.state_dict()})
-        print("Should have wrote loss_2")
+        #print("Should have wrote loss_1")
+        #wandb.log({"loss": dino_loss.state_dict()})
+        #print("Should have wrote loss_2")
 
 
 
