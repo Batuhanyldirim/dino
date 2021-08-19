@@ -2,7 +2,7 @@
 #SBATCH --mem 10GB
 #SBATCH --gres gpu:3
 #SBATCH --cpus-per-task 8
-#SBATCH --constraint shelob
+#SBATCH --constraint rivendell
 #SBATCH --time 48:00:00
 #SBATCH --mail-type FAIL
 #SBATCH --mail-user batuhany@kth.se
