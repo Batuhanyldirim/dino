@@ -131,7 +131,7 @@ def get_args_parser():
         distributed training; see https://pytorch.org/docs/stable/distributed.html""")
     parser.add_argument("--local_rank", default=0, type=int, help="Please ignore and do not set this argument.")
     parser.add_argument("--world_size", default=1, type=int, help="Please ignore and do not set this argument.")
-    parser.add_argument("--exp_name", default="dinoss", type=int, help="Please ignore and do not set this argument.")
+    parser.add_argument("--exp_name", default="dinoss", type=str, help="Please ignore and do not set this argument.")
     return parser
 
 
