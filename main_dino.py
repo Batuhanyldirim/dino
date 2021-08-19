@@ -131,6 +131,7 @@ def get_args_parser():
         distributed training; see https://pytorch.org/docs/stable/distributed.html""")
     parser.add_argument("--local_rank", default=0, type=int, help="Please ignore and do not set this argument.")
     parser.add_argument("--world_size", default=1, type=int, help="Please ignore and do not set this argument.")
+    parser.add_argument("--exp_name", default="dinoss", type=int, help="Please ignore and do not set this argument.")
     return parser
 
 
@@ -141,7 +142,6 @@ def train_dino(args):
     if utils.is_main_process():
         wandb.init(
             project="dino-ft-ssl",
-            exp_name="dinoss_try1",
             name=args.exp_name,
             config={"name": args.exp_name},
         )
