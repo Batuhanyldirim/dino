@@ -29,7 +29,7 @@ import torch.backends.cudnn as cudnn
 import torch.nn.functional as F
 from torchvision import datasets, transforms
 from torchvision import models as torchvision_models
-#import wandb
+import wandb
 
 import utils
 import vision_transformer as vits
@@ -134,11 +134,18 @@ def get_args_parser():
     return parser
 
 
-def train_dino(args):
-    #wandb.init(project="dinoss_try_5", entity="dino-wsss-kth")
-    #config = wandb.config
 
-    #config.learning_rate = args.lr
+
+def train_dino(args):
+    # Initialize wandb
+    if utils.is_main_process():
+        wandb.init(
+            project="dino-ft-ssl",
+            exp_name="dinoss_try1",
+            name=args.exp_name,
+            config={"name": args.exp_name},
+        )
+        wandb.config.update(args)
 
     utils.init_distributed_mode(args)
     utils.fix_random_seeds(args.seed)
@@ -320,6 +327,7 @@ def train_dino(args):
         log_stats = {**{f'train_{k}': v for k, v in train_stats.items()},
                      'epoch': epoch}
         if utils.is_main_process():
+            wandb.log({"train": log_stats})
             with (Path(args.output_dir) / "log.txt").open("a") as f:
                 f.write(json.dumps(log_stats) + "\n")
     total_time = time.time() - start_time
