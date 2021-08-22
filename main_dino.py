@@ -199,8 +199,8 @@ def train_dino(args):
 
     ###########FLAG
 
-    utils.load_pretrained_weights(student, args.sstrain_checkpoint, model_name="vit_small",patch_size=args.patch_size)
-    utils.load_pretrained_weights(teacher, args.sstrain_checkpoint, model_name="vit_small",patch_size=args.patch_size)
+    utils.load_pretrained_weights(student, args.sstrain_checkpoint, checkpoint_key="student", model_name="vit_small",patch_size=args.patch_size)
+    utils.load_pretrained_weights(teacher, args.sstrain_checkpoint, checkpoint_key="teacher", model_name="vit_small",patch_size=args.patch_size)
 
 
     # multi-crop wrapper handles forward with inputs of different resolutions
