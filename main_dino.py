@@ -293,7 +293,10 @@ def train_dino(args):
 
     start_time = time.time()
     print("Starting DINO training !")
+    my_c = 0
     for epoch in range(start_epoch, args.epochs):
+        print("START EPOCH:", start_epoch)
+        my_c +=1
         data_loader.sampler.set_epoch(epoch)
 
         # ============ training one epoch of DINO ... ============
@@ -333,6 +336,7 @@ def train_dino(args):
     total_time = time.time() - start_time
     total_time_str = str(datetime.timedelta(seconds=int(total_time)))
     print('Training time {}'.format(total_time_str))
+    print("Number of epochs:", my_c)
 
 
 def train_one_epoch(student, teacher, teacher_without_ddp, dino_loss, data_loader,
