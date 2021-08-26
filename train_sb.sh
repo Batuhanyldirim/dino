@@ -2,7 +2,7 @@
 #SBATCH --mem 10GB
 #SBATCH --gres gpu:3
 #SBATCH --cpus-per-task 8
-#SBATCH --constraint shelob
+#SBATCH --constraint rivendell
 #SBATCH --time 48:00:00
 #SBATCH --mail-type FAIL
 #SBATCH --mail-user batuhany@kth.se
@@ -19,6 +19,6 @@ python -m torch.distributed.launch main_dino.py --data_path /local_storage/datas
     --output_dir /local_storage/users/batuhany/dino/checkpoints \
     --num_workers 4 \
     --batch_size_per_gpu 16 \
-    --sstrain_checkpoint ~/local_storage/datasets/dino_chkp \
+    --sstrain_checkpoint ~/local_storage/dino_chkp \
     --saveckp_freq 5 \
     --exp_name dinosstry3
