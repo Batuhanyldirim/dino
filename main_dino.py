@@ -141,7 +141,7 @@ def train_dino(args):
     # Initialize wandb
     if utils.is_main_process():
         wandb.init(
-            project="dino-ft-ssl",
+            project="dino-ft-ssl-rivendell",
             name=args.exp_name,
             config={"name": args.exp_name},
         )
@@ -199,6 +199,7 @@ def train_dino(args):
 
     ###########FLAG
 
+    print("before weight_load")
     utils.load_pretrained_weights(student, args.sstrain_checkpoint, checkpoint_key="student", model_name="vit_small",patch_size=args.patch_size)
     utils.load_pretrained_weights(teacher, args.sstrain_checkpoint, checkpoint_key="teacher", model_name="vit_small",patch_size=args.patch_size)
 
