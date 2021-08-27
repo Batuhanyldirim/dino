@@ -21,4 +21,4 @@ python -m torch.distributed.launch main_dino.py --data_path /local_storage/datas
     --batch_size_per_gpu 16 \
     --sstrain_checkpoint ~/local_storage/dino_chkp \
     --saveckp_freq 5 \
-    --exp_name dinosstry3
+    --exp_name dinosstry4
