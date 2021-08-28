@@ -141,7 +141,7 @@ def train_dino(args):
     # Initialize wandb
     if utils.is_main_process():
         wandb.init(
-            project="dino-ft-ssl-rivendell",
+            project="dino-ft-ssl",
             name=args.exp_name,
             config={"name": args.exp_name},
         )
