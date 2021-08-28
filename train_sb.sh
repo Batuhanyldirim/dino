@@ -16,9 +16,11 @@ pushd ~/dino
 conda activate dinoss
 
 python -m torch.distributed.launch main_dino.py --data_path /local_storage/datasets/voc2012_for_dino \
-    --output_dir /local_storage/users/batuhany/dino/checkpoints6 \
+    --output_dir /local_storage/users/batuhany/dino/checkpoints7 \
     --num_workers 4 \
     --batch_size_per_gpu 16 \
     --saveckp_freq 5 \
-    --exp_name dinosstry6_lr:0.0005_shelob
+    --exp_name dinosstry7_lr:0.00003_shelob \
+    --lr 0.00003 \
+    --min_lr 1e-7
     # --sstrain_checkpoint ~/local_storage/dino_chkp/dino_deitsmall8_pretrain_full_checkpoint/archive/data.pkl \
