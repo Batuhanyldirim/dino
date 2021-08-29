@@ -20,7 +20,7 @@ python -m torch.distributed.launch main_dino.py --data_path /local_storage/datas
     --num_workers 4 \
     --batch_size_per_gpu 16 \
     --saveckp_freq 5 \
-    --exp_name dinosstry8_lr:0.0003_shelob \
+    --exp_name dinosstry9_lr:0.0003_shelob \
     --lr 0.0003 \
     --min_lr 1e-6
     # --sstrain_checkpoint ~/local_storage/dino_chkp/dino_deitsmall8_pretrain_full_checkpoint/archive/data.pkl \
