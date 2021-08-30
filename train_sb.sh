@@ -15,6 +15,7 @@ nvidia-smi
 pushd ~/dino
 conda activate dinoss
 
+
 python -m torch.distributed.launch main_dino.py --data_path /local_storage/datasets/voc2012_for_dino \
     --output_dir /local_storage/users/batuhany/dino/checkpoints10 \
     --num_workers 4 \
